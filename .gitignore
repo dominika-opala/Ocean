@@ -1,1 +1,12 @@
 
+.DS_Store
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
+.vs/Pyramids/xs/UserPrefs.xml
+Assembly-CSharp.csproj
+/Library
+/obj
+Pyramids.sln
+.gitattributes
