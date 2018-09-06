@@ -11,6 +11,7 @@ public class Grid : MonoBehaviour
     private Mesh mesh;
     int n;
 
+
     private void Awake()
     {
         Generate();
@@ -27,13 +28,15 @@ public class Grid : MonoBehaviour
         Vector2[] uv = new Vector2[vertices.Length];
         float r = 10;
         int i = 0;
+     
 
         for (int y = 0; y <= Row; y++){
 
             for (float angle = 0; angle <= 2 * Mathf.PI; angle += (2f * Mathf.PI)/Column){ //angle <= 2 * Mathf.PI = 360, angle += (2f * Mathf.PI)/Column) -> it moves in 360 depending on the number of Columns. 
 
-                // r = y;
+                // r = y; // Increase the radius as the y increases giving us a cone shape with the point at the bottom
 
+                r = Mathf.Exp(Mathf.Cos(y/2f));
                 float x = Mathf.Cos(angle) * r;
                 float z = Mathf.Sin(angle) * r;
 
@@ -61,12 +64,12 @@ public class Grid : MonoBehaviour
                 var pointD = vi + Column + 2;
 
                 triangles[ti] = pointA;
-                triangles[ti + 1] = pointB;
-                triangles[ti + 2] = pointC; 
+                triangles[ti + 1] = pointC;
+                triangles[ti + 2] = pointB; 
 
                 triangles[ti + 3] = pointB;
-                triangles[ti + 4] = pointD;
-                triangles[ti + 5] = pointC; 
+                triangles[ti + 4] = pointC;
+                triangles[ti + 5] = pointD; 
 
 
             }
