@@ -35,37 +35,31 @@ public class Grid : MonoBehaviour {
         Generate();
     }
 
-  
     private void Generate() {
 
         GetComponent<MeshFilter>().mesh = mesh = new Mesh();
         mesh.name = "Ocean Grid";
 
-        // UV mapping is the 3D modeling process of projecting a 2D image to a 3D model's surface for texture mapping. 
-
+        wavePoints = new Vector3[(Column + 1) * (Row + 1)];
         Vector2[] uv = new Vector2[wavePoints.Length];  // To make the texture/material to fit our entire grid, simply divide the position of the vertex by the grid dimensions.
 
         int i = 0;
-        for (int y = 0; y <= Row; y++)
-        {
-
-            for (float x = 0; x <= Column; x++)
-            {
-
-                wavePoints[i] = new Vector3(x, y, 0f);
+        for (int y = 0; y <= Row; y++) {
+            for (float x = 0; x <= Column; x++){
+                 wavePoints[i] = new Vector3(x, y, 0f);
                 uv[i] = new Vector2((float)x / Column, (float)y / Row);
 
                 i++;
             }
         }
-        mesh.vertices = wavePoints;
+
+        mesh.vertices = wavePoints; // mesh.vertices is a fixed property of the Mesh class. 
         mesh.uv = uv;
+
         int[] triangles = new int[Column * Row * 6]; // creating traingles so that our grid would be visible (and filled).
 
-        for (int ti = 0, vi = 0, y = 0; y < Row; y++, vi++)
-        {
-            for (int x = 0; x < Column; x++, ti += 6, vi++)
-            {
+        for (int ti = 0, vi = 0, y = 0; y < Row; y++, vi++) {
+            for (int x = 0; x < Column; x++, ti += 6, vi++) {
 
                 var pointA = vi;
                 var pointB = vi + 1;
@@ -84,15 +78,30 @@ public class Grid : MonoBehaviour {
         mesh.triangles = triangles;
     }
 
-    //private void Update() {
-    //    for (int i = 0, y = 0; y <= Row; y++){
-    //        for (int x = 0; x <= Column; x++, i++){
-    //            wavePoints[i] = wavePoint;
-    //            wavePoint.y = Mathf.Sin(Mathf.PI * (wavePoint.x + Time.time));
-    //        }
-    //    }
+    private void Update() {
 
-    //}
+        Vector3[] wavePoints = mesh.vertices;
+        Vector3[] normals = mesh.normals;
+        int i = 0;
+        while (i < wavePoints.Length)
+        {
+            wavePoints[i] += normals[i] * Mathf.Sin(Time.time);
+            i++;
+        }
+        mesh.vertices = wavePoints;
+
+        //int i = 0;
+        //for (int y = 0; y <= Row; y++){
+        //    for (int x = 0; x <= Column; x++){
+        //        wavePoints[i] = wavePoint;
+        //        wavePoint.y = Mathf.Sin(Mathf.PI * (wavePoint.x + Time.time));
+        //        i++;
+        //    }
+        //}
+        //mesh.vertices = wavePoints;
+
+
+    }
 
 
     public float AddXY(float x, float y) { // That's a function that, if invoked, sets the graph in a linear function.
@@ -105,12 +114,10 @@ public class Grid : MonoBehaviour {
 
     public float RandomOceanWaves(float x, float y) { // This function creates pyramids in our graph (which we can manipulate thanks to [Range(0f,1f)].
         float z;
-        if (Random.value > ChooseYourNumber)
-        {
+        if (Random.value > ChooseYourNumber) {
             z = 0;
         }
-        else
-        {
+        else {
             z = -1;
         }
 

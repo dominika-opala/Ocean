@@ -190,4 +190,5 @@
 'Assets/Boat.cs'
 'Assets/Foam.cs'
 'Assets/Grid.cs'
+'Assets/GridCopy.cs'
 -lib:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity'

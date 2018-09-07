@@ -4,18 +4,14 @@ using UnityEngine;
 public class GridCopy : MonoBehaviour {
 
     public int Column, Row;
-    public int RandomNumberMax;
     private Vector3[] vertices;
-    public int ChooseYourNumber;
     private Mesh mesh;
 
-    private void Start()
-    {
+    private void Start() {
         Generate();
     }
 
-    private void Generate()
-    {
+    private void Generate() {
 
         GetComponent<MeshFilter>().mesh = mesh = new Mesh();
         mesh.name = "Ocean Grid";
@@ -26,13 +22,11 @@ public class GridCopy : MonoBehaviour {
         float r = 10;
         int i = 0;
 
-        for (int y = 0; y <= Row; y++)
-        {
+        for (int y = 0; y <= Row; y++) {
 
-            for (float angle = 0; angle <= 2 * Mathf.PI; angle += (2f * Mathf.PI) / Column)
-            { //angle <= 2 * Mathf.PI = 360, angle += (2f * Mathf.PI)/Column) -> it moves in 360 depending on the number of Columns. 
+            for (float angle = 0; angle <= 2 * Mathf.PI; angle += (2f * Mathf.PI) / Column) { //angle <= 2 * Mathf.PI = 360, angle += (2f * Mathf.PI)/Column) -> it moves in 360 depending on the number of Columns. 
 
-                // r = y; Increase the radius as the y increases giving us a cone shape with the point at the bottom
+                // r = y; Increase the radius as the y increases giving us a cone shape with the point at the bottom.
                 // r = Mathf.Sin(y);
                 // r= = Mathf.Pow(y, 1f /3f);
                 // r= Mathf.Abs(y);
@@ -53,10 +47,8 @@ public class GridCopy : MonoBehaviour {
         mesh.uv = uv;
 
         int[] triangles = new int[Column * Row * 6];
-        for (int ti = 0, vi = 0, y = 0; y < Row; y++, vi++)
-        {
-            for (int x = 0; x < Column; x++, ti += 6, vi++)
-            {
+        for (int ti = 0, vi = 0, y = 0; y < Row; y++, vi++) {
+            for (int x = 0; x < Column; x++, ti += 6, vi++) {
 
                 var pointA = vi;
                 var pointB = vi + 1;
