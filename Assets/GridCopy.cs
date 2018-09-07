@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Grid : MonoBehaviour {
+public class GridCopy : MonoBehaviour {
 
     public int Column, Row;
     public int RandomNumberMax;
@@ -9,7 +9,8 @@ public class Grid : MonoBehaviour {
     public int ChooseYourNumber;
     private Mesh mesh;
 
-    private void Start() {
+    private void Start()
+    {
         Generate();
     }
 
@@ -24,17 +25,19 @@ public class Grid : MonoBehaviour {
         Vector2[] uv = new Vector2[vertices.Length];
         float r = 10;
         int i = 0;
-     
-        for (int y = 0; y <= Row; y++){
 
-            for (float angle = 0; angle <= 2 * Mathf.PI; angle += (2f * Mathf.PI)/Column){ //angle <= 2 * Mathf.PI = 360, angle += (2f * Mathf.PI)/Column) -> it moves in 360 depending on the number of Columns. 
+        for (int y = 0; y <= Row; y++)
+        {
+
+            for (float angle = 0; angle <= 2 * Mathf.PI; angle += (2f * Mathf.PI) / Column)
+            { //angle <= 2 * Mathf.PI = 360, angle += (2f * Mathf.PI)/Column) -> it moves in 360 depending on the number of Columns. 
 
                 // r = y; Increase the radius as the y increases giving us a cone shape with the point at the bottom
                 // r = Mathf.Sin(y);
                 // r= = Mathf.Pow(y, 1f /3f);
                 // r= Mathf.Abs(y);
 
-                r = Mathf.Exp(Mathf.Cos(y/2f));
+                r = Mathf.Exp(Mathf.Cos(y / 2f));
                 float x = Mathf.Cos(angle) * r;
                 float z = Mathf.Sin(angle) * r;
 
@@ -42,7 +45,7 @@ public class Grid : MonoBehaviour {
                 uv[i] = new Vector2((float)x / Column, (float)y / Row);
 
                 i++;
-           }
+            }
         }
 
 
@@ -50,8 +53,10 @@ public class Grid : MonoBehaviour {
         mesh.uv = uv;
 
         int[] triangles = new int[Column * Row * 6];
-        for (int ti = 0, vi = 0, y = 0; y < Row; y++, vi++) {
-            for (int x = 0; x < Column; x++, ti += 6, vi++) {
+        for (int ti = 0, vi = 0, y = 0; y < Row; y++, vi++)
+        {
+            for (int x = 0; x < Column; x++, ti += 6, vi++)
+            {
 
                 var pointA = vi;
                 var pointB = vi + 1;
@@ -60,11 +65,11 @@ public class Grid : MonoBehaviour {
 
                 triangles[ti] = pointA;
                 triangles[ti + 1] = pointC;
-                triangles[ti + 2] = pointB; 
+                triangles[ti + 2] = pointB;
 
                 triangles[ti + 3] = pointB;
                 triangles[ti + 4] = pointC;
-                triangles[ti + 5] = pointD; 
+                triangles[ti + 5] = pointD;
             }
         }
         mesh.triangles = triangles;

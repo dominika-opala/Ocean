@@ -976,6 +976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1341724556}
+  createKey: 32
+  newGameKey: 9
 --- !u!4 &2011443857
 Transform:
   m_ObjectHideFlags: 0
