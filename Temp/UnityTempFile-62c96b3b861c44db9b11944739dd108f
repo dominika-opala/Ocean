@@ -4,6 +4,7 @@
 -langversion:4
 -out:'Temp/Assembly-CSharp.dll'
 -nostdlib
+-r:'Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll'
 -r:'Library/ScriptAssemblies/UnityEditor.StandardEvents.dll'
 -r:'Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll'
 -r:'Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll'
@@ -188,7 +189,8 @@
 -define:UNITY_TEAM_LICENSE
 -define:ENABLE_VSTU
 'Assets/Boat.cs'
-'Assets/Foam.cs'
 'Assets/Grid.cs'
 'Assets/GridCopy.cs'
+'Assets/LightFlicker.cs'
+'Assets/WaveController.cs'
 -lib:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity'

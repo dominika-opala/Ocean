@@ -26,12 +26,12 @@ public class GridCopy : MonoBehaviour {
 
             for (float angle = 0; angle <= 2 * Mathf.PI; angle += (2f * Mathf.PI) / Column) { //angle <= 2 * Mathf.PI = 360, angle += (2f * Mathf.PI)/Column) -> it moves in 360 depending on the number of Columns. 
 
-                // r = y; Increase the radius as the y increases giving us a cone shape with the point at the bottom.
+                r = y / 3f; // Increase the radius as the y increases giving us a cone shape with the point at the bottom.
                 // r = Mathf.Sin(y);
                 // r= = Mathf.Pow(y, 1f /3f);
                 // r= Mathf.Abs(y);
 
-                r = Mathf.Exp(Mathf.Cos(y / 2f));
+                // r = Mathf.Exp(Mathf.Cos(y / 2f));
                 float x = Mathf.Cos(angle) * r;
                 float z = Mathf.Sin(angle) * r;
 
