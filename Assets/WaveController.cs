@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour {
 
-    public float Height; // how heigh the object will be moving up and down.
+    public float Height; // How heigh the object will be moving up and down.
     public float Time;
 
 	void Start () {

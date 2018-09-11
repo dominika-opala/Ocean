@@ -36,6 +36,6 @@ public class Boat : MonoBehaviour {
             }
         }
 
-        transform.localPosition = new Vector3(transform.localPosition.x, planeCloth.vertices[closestVertexIndex].y / 10f, transform.localPosition.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, planeCloth.vertices[closestVertexIndex].y / 12f, transform.localPosition.z);
     }
 }
